@@ -10,27 +10,14 @@ function data_insert($table, $data_insert){
         }
     }
     $id = 1;
-    $cols = scandir("data/$table/");
-    foreach($cols as $col) {
-        if(!isset($data_insert[$col])){
-            $data_insert[$col] = "";
-        }
-    }
-    $checkcols = $scandir[2] ?? false;
-    if($checkcols) $folder = "data/$table/$foldercheck/";
-    if(is_readable($folder)){
-        $scandir = scandir($folder);
-        sort($scandir);
-        $scandircount = count($scandir);
-        if($scandircount > 2){
-            $id = $scandir[$scandircount-1] + 1;
-        }
-        else{
-            $id = 1;
-        }
+    $last_id_file = "data/$table/last.id";
+    if(file_exists($last_id_file)){
+        $last_id = file_get_contents($last_id_file);
+        $id = $last_id+1;
     }
     foreach($data_insert as $col=>$val){
         file_put_contents("data/$table/$col/$id",$val);
     }
+    file_put_contents("data/$table/last.id",$id);
     return $id;
 }
