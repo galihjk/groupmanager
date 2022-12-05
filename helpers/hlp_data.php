@@ -2,6 +2,8 @@
 
 $data_global = [];
 
+include_once("helpers/hlp_str.php");
+
 function data_insert($table, $data_insert){
     $folder = "";
     $checkcols = array_keys($data_insert);
