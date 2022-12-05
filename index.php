@@ -15,6 +15,9 @@ if(!empty($_GET['tesinsert2'])){
         'qwe' => "zxc" . $_GET['tesinsert2'],
     ]);
 }
+if(!empty($_GET['get'])){
+    print_r( data_get_one("tezt",$_GET['get']));
+}
 
 /*
     if(file_exists($folder)){
