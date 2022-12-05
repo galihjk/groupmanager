@@ -58,7 +58,7 @@ function data_get_one($table, $id, $cols = [], $refresh = false){
         if(empty($cols)){
             $scandir = scandir("data/$table/");
             foreach($scandir as $item){
-                if($item == "." || $item == "..") continue;
+                if(str_contains($item, '.')) continue;
                 $cols[] = $item;
             }
         }
