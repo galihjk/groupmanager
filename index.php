@@ -13,7 +13,7 @@ if(file_exists($folder)){
         $scandir = scandir($folder);
         $scandircount = count($scandir);
         echo "[scandircount$scandircount]<pre>";
-        print($scandir);
+        print_r($scandir);
         if($scandircount > 2){
             $id = $scandir[$scandircount] + 1;
         }
