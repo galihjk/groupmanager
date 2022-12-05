@@ -11,6 +11,7 @@ if(file_exists($folder)){
     }
     else{
         $scandir = scandir($folder);
+        sort($scandir);
         $scandircount = count($scandir);
         echo "[scandircount$scandircount]<pre>";
         print_r($scandir);
