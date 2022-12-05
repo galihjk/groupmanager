@@ -15,7 +15,7 @@ if(file_exists($folder)){
         echo "[scandircount$scandircount]<pre>";
         print_r($scandir);
         if($scandircount > 2){
-            $id = $scandir[$scandircount] + 1;
+            $id = $scandir[$scandircount-1] + 1;
         }
         else{
             $id = 1;
