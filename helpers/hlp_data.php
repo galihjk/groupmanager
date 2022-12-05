@@ -79,6 +79,13 @@ function data_get_one($table, $id, $cols = [], $refresh = false){
 }
 
 function data_update($table, $id, $data_update){
+    $checkcols = array_keys($data_update);
+    foreach($checkcols as $col){
+        $folder = "data/$table/$col/";
+        if(!file_exists($folder)){
+            mkdir($folder, 0777, true);
+        }
+    }
     foreach($data_update as $col=>$val){
         file_put_contents("data/$table/$col/$id",$val);
     }
