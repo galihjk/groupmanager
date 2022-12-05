@@ -9,6 +9,9 @@ function data_insert($table, $data){
         }
     }
     $id = 1;
+    $scandir = scandir("data/$table/");
+    $foldercheck = $scandir[2] ?? false;
+    if($foldercheck) $folder = "data/$table/$foldercheck/";
     if(is_readable($folder)){
         $scandir = scandir($folder);
         sort($scandir);

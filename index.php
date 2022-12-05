@@ -10,6 +10,11 @@ if(!empty($_GET['tesinsert'])){
         'address' => "address" . $_GET['tesinsert'],
     ]);
 }
+if(!empty($_GET['tesinsert2'])){
+    echo data_insert("tezt",[
+        'qwe' => "zxc" . $_GET['tesinsert2'],
+    ]);
+}
 
 /*
     if(file_exists($folder)){
