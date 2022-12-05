@@ -17,6 +17,8 @@ if(!empty($_GET['tesinsert2'])){
 }
 if(!empty($_GET['get'])){
     print_r( data_get_one("tezt",$_GET['get']));
+    data_update("tezt",$_GET['get'],['updated'=>time()]);
+    print_r( data_get_one("tezt",$_GET['get']));
 }
 
 /*
