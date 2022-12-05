@@ -7,10 +7,13 @@ include_once("helpers/hlp_data.php");
 if(file_exists($folder)){
     if(!is_readable($folder)){
         $id = 1;
+        echo "not readable";
     }
     else{
         $scandir = scandir($folder);
         $scandircount = count($scandir);
+        echo "[scandircount$scandircount]<pre>";
+        print($scandir);
         if($scandircount > 2){
             $id = $scandir[$scandircount] + 1;
         }
