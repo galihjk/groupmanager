@@ -178,6 +178,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
     echo "<pre>";
     print_r($ids);
     print_r($filtercheck);
+    echo "</pre>";
     echo "table$table, current_id_check$current_id_check, currentcount$currentcount, limit$limit, type$type";
     if(!empty($filtercheck)){
         $find_field = "";
@@ -187,6 +188,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
             $find_val = $v;
             break;
         }
+        echo "<p>find_field$find_field find_val$find_val</p>";
         if(!empty($find_field)){
             unset($filtercheck[$find_field]);
 
@@ -207,6 +209,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
                 foreach($scandir as $item){
                     if(str_contains($item, '.')) continue;
                     $currentval = file_get_contents("data/$table/$find_field/$item");
+                    echo "<p>currentval$currentval</p>";
                     $id_get = "";
                     if($type == "exact"){
                         if($currentval == $find_val){
@@ -214,6 +217,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
                             // $ids[] = $item;
                         }
                     }
+                    echo "<p>id_get$id_get</p>";
                     /*
                         elseif($type == "insensitive"){
                             if(strtolower($currentval) == strtolower($find_val)){
