@@ -20,6 +20,10 @@ if(!empty($_GET['get'])){
     data_update("tezt",$_GET['get'],['updated'=>time()]);
     print_r( data_get_one("tezt",$_GET['get']));
 }
+if(!empty($_GET['tesfilter'])){
+    echo "<pre>";
+    print_r(data_find("tezt",['name'=>'nameGalih','qwe'=>'zxcAsd']));
+}
 
 /*
     if(file_exists($folder)){
