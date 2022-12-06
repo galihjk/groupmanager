@@ -92,7 +92,7 @@ function data_update($table, $id, $data_update){
 }
 
 
-function data_find($table, $filter, $limit, $return_fields = [], $type = "contains_insensitive"){
+function data_find($table, $filter, $limit, $return_fields = [], $type = "exact"){
     if(!file_exists("data/$table/$find_field")){
         return [];
     }
@@ -169,12 +169,16 @@ function data_find($table, $filter, $limit, $return_fields = [], $type = "contai
     }
     $data_got = [];
     foreach($ids as $id){
-        $data_got[] = data_get_one($table, $id, $return_fields);
+        $data_got[$id] = data_get_one($table, $id, $return_fields);
     }
     return $data_got;
 }
 
 function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$currentcount, $limit, $type){
+    echo "<pre>";
+    print_r($ids);
+    print_r($filtercheck);
+    echo "table$table, current_id_check$current_id_check, currentcount$currentcount, limit$limit, type$type";
     if(!empty($filtercheck)){
         $find_field = "";
         $find_val = "";
