@@ -109,64 +109,64 @@ function data_find($table, $filter, $limit, $return_fields = [], $type = "exact"
     $current_id_check = 0;
     data_filtercheck($table, $ids, $filtercheck, $current_id_check, $currentcount, $limit, $type);
 
-    foreach($filter as $find_field=>$find_val){
-        $scandir = scandir("data/$table/$find_field/");
+    // foreach($filter as $find_field=>$find_val){
+    //     $scandir = scandir("data/$table/$find_field/");
         
-        foreach($scandir as $item){
-            if(str_contains($item, '.')) continue;
-            $currentval = file_get_contents("data/$table/$find_field/$item");
-            if($type == "exact"){
-                if($currentval == $find_val){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "insensitive"){
-                if(strtolower($currentval) == strtolower($find_val)){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "contains_sensitive"){
-                if(str_contains($currentval,$find_val)){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "contains_insensitive"){
-                if(str_contains(strtolower($currentval),strtolower($find_val))){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "first_sensitive"){
-                if(isDiawali($currentval, $find_val, true)){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "first_insensitive"){
-                if(isDiawali($currentval, $find_val, false)){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "first_sensitive"){
-                if(isDiakhiri($currentval, $find_val, true)){
-                    $ids[] = $item;
-                }
-            }
-            elseif($type == "first_insensitive"){
-                if(isDiakhiri($currentval, $find_val, false)){
-                    $ids[] = $item;
-                }
-            }
-            else{
-                echo "invalid type [$type]";
-                return [];
-            }
-            if($currentcount >= $limit){
-                break;
-            }
-            else{
-                $currentcount++;
-            }
-        }
-    }
+    //     foreach($scandir as $item){
+    //         if(str_contains($item, '.')) continue;
+    //         $currentval = file_get_contents("data/$table/$find_field/$item");
+    //         if($type == "exact"){
+    //             if($currentval == $find_val){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "insensitive"){
+    //             if(strtolower($currentval) == strtolower($find_val)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "contains_sensitive"){
+    //             if(str_contains($currentval,$find_val)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "contains_insensitive"){
+    //             if(str_contains(strtolower($currentval),strtolower($find_val))){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "first_sensitive"){
+    //             if(isDiawali($currentval, $find_val, true)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "first_insensitive"){
+    //             if(isDiawali($currentval, $find_val, false)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "first_sensitive"){
+    //             if(isDiakhiri($currentval, $find_val, true)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         elseif($type == "first_insensitive"){
+    //             if(isDiakhiri($currentval, $find_val, false)){
+    //                 $ids[] = $item;
+    //             }
+    //         }
+    //         else{
+    //             echo "invalid type [$type]";
+    //             return [];
+    //         }
+    //         if($currentcount >= $limit){
+    //             break;
+    //         }
+    //         else{
+    //             $currentcount++;
+    //         }
+    //     }
+    // }
     $data_got = [];
     foreach($ids as $id){
         $data_got[$id] = data_get_one($table, $id, $return_fields);
@@ -194,6 +194,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
 
             if(!empty($current_id_check)){
                 if(!file_exists("data/$table/$find_field/$current_id_check")) return false;
+                echo "<p>currentval$currentval</p>";
                 $currentval = file_get_contents("data/$table/$find_field/$current_id_check");
                 if($type == "exact"){
                     if($currentval == $find_val){
