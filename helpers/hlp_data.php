@@ -193,6 +193,7 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
             unset($filtercheck[$find_field]);
 
             if(!empty($current_id_check)){
+                if(!file_exists("data/$table/$find_field/$current_id_check")) return false;
                 $currentval = file_get_contents("data/$table/$find_field/$current_id_check");
                 if($type == "exact"){
                     if($currentval == $find_val){
