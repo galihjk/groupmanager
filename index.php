@@ -22,7 +22,11 @@ if(!empty($_GET['get'])){
 }
 if(!empty($_GET['tesfilter'])){
     echo "<pre>";
-    print_r(data_find("tezt",['name'=>'nameGalih','qwe'=>'zxcAsd',1]));
+    print_r(data_find(
+        "tezt",
+        ['name'=>'nameGalih','qwe'=>'zxcAsd'],
+        1
+    ));
 }
 
 /*
