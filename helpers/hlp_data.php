@@ -266,9 +266,6 @@ function data_filtercheck($table, &$ids, &$filtercheck, &$current_id_check, &$cu
                             return false;
                         }
                     }
-                    else{
-                        return false;
-                    }
                 }
             }
         }
